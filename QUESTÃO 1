@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int main() {
+    char forca[] = "amor";  
+    char tentativa;
+    int achei,tentativa_num,i;
+   
+   printf ("Vamos brincar de forca? Voce tera 6 tentativas, a cada tentativa escreva  uma letra minuscula. \n");
+   
+    for  (tentativa_num = 0; tentativa_num < 6; tentativa_num++) {
+        printf("Digite uma letra: ");
+        scanf(" %c", &tentativa);  
+
+        achei = 0;  
+
+        
+        for ( i = 0; forca[i] != '\0'; i++) {
+            if (tentativa == forca[i]) {
+                achei = 1;  
+                break;  
+            }
+        }
+
+        if (achei) {
+            printf("Voce acertou! '%c' esta na forca!\n", tentativa);
+        } else {
+            printf("Voce errou! '%c' nao esta na forca.\n", tentativa);
+        }
+    }
+
+    return 0;
+}
