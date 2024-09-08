@@ -1,0 +1,56 @@
+#include <stdio.h>
+
+#define NUM_CONTAS 100  
+
+
+int buscaBinaria(int contas[], int tamanho, int contaProcurada, int *comparacoes) {
+    int esquerda = 0;
+    int direita = tamanho - 1;
+    int meio;
+
+    *comparacoes = 0;  
+
+    while (esquerda <= direita) {
+        meio = esquerda + (direita - esquerda) / 2;
+        (*comparacoes)++;  
+
+        if (contas[meio] == contaProcurada) {
+            return meio;  
+        } else if (contas[meio] < contaProcurada) {
+            esquerda = meio + 1;
+        } else {
+            direita = meio - 1;
+        }
+    }
+
+    return -1;  
+}
+
+int main() {
+    int contas[NUM_CONTAS];
+    int contaProcurada;
+    int posicao;
+    int comparacoes;
+	int i;
+    
+    for (i = 0; i < NUM_CONTAS; i++) {
+        contas[i] = i + 1;  
+    }
+
+    
+    printf("Digite o numero da conta a ser procurada: ");
+    scanf("%d", &contaProcurada);
+
+    
+    posicao = buscaBinaria(contas, NUM_CONTAS, contaProcurada, &comparacoes);
+
+    
+    if (posicao != -1) {
+        printf("Conta %d encontrada na posicao %d.\n", contaProcurada, posicao);
+    } else {
+        printf("Conta %d nao existe.\n", contaProcurada);
+    }
+    printf("Numero de comparacoes realizadas: %d\n", comparacoes);
+
+    return 0;
+}
